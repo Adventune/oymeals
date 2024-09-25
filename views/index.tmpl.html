@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fi" id="index">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title">{{.Title}}</title>
+    {{template "scripts" .}} {{template "styles" .}}
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{.Date}}</h1>
+      <div class="divider"></div>
+      <div class="restaurants">
+        {{range .Restaurants}}
+        <div class="restaurant">
+          <h2>{{.Name}}</h2>
+          <div class="divider"></div>
+          {{range .Menus}}
+          <div class="menu">
+            <h3>{{.Name}}</h3>
+            <ul>
+              {{range .Items}}
+              <li>
+                <span class="name">{{.Name}}</span>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+          {{end}}
+        </div>
+
+        {{end}}
+      </div>
+    </div>
+  </body>
+</html>
