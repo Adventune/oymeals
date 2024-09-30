@@ -3,4 +3,4 @@
 docker-compose.dev.yml
 compose.yml
 Dockerfile
-
+.git
