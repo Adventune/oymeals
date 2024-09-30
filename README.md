@@ -29,3 +29,4 @@ oymeals
 | STATIC  | If set, generates a static HTML with the menu.     | 0              |
 | OUTFILE | Sets the file name and path of the generated file. | `./meals.html` |
 | TITLE   | Sets a custom title for the page.                  | OYMeals        |
+| PORT    | Webserver port number.                             | 3000           |
