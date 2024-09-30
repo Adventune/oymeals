@@ -1,4 +1,4 @@
-package oymeals
+package main
 
 import (
 	"os"
