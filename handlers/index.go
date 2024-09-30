@@ -100,7 +100,8 @@ func fetchJuvenes(url string, names ...string) []Restaurant {
 					for _, mealOption := range day.Mealoptions {
 						var items []Item
 						// Check if the menu is lunch
-						if strings.Contains(strings.ToLower(mealOption.Name), "lounas") {
+						if strings.Contains(strings.ToLower(mealOption.Name), "lounas") ||
+							strings.Contains(strings.ToLower(mealOption.Name), "classic") {
 							for _, menuItem := range mealOption.MenuItems {
 								items = append(items, Item{Name: menuItem.Name})
 							}
