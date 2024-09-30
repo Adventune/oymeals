@@ -124,3 +124,9 @@ type PowerestaResponse []struct {
 		} `json:"mealOptions"`
 	} `json:"data"`
 }
+
+type RenderData struct {
+	Restaurants []Restaurant
+	Date        string
+	Title       string
+}

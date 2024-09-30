@@ -34,8 +34,16 @@ var powerestaUrls = [][]string{
 }
 
 func Index(c *fiber.Ctx) error {
-	var restaurants []Restaurant
+	// Render the page
+	return c.Render("index.tmpl", fiber.Map{
+		"Title":       "Ruokarokkaa",
+		"Restaurants": Data(),
+		"Date":        time.Now().Format("02.01.2006"),
+	})
+}
 
+func Data() []Restaurant {
+	var restaurants []Restaurant
 	// Fetch menus from Juvenes and Uniresta
 	for _, url := range juvenesUrls {
 		response := fetchJuvenes(url[0], url[1:]...)
@@ -47,12 +55,7 @@ func Index(c *fiber.Ctx) error {
 		restaurants = append(restaurants, response...)
 	}
 
-	// Render the page
-	return c.Render("index.tmpl", fiber.Map{
-		"Title":       "Ruokarokkaa",
-		"Restaurants": restaurants,
-		"Date":        time.Now().Format("02.01.2006"),
-	})
+	return restaurants
 }
 
 // Fetch menus from Juvenes

@@ -4,7 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title id="title">{{.Title}}</title>
-    {{template "scripts" .}} {{template "styles" .}}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Inter:bold,regular,medium,semibold"
+    />
+
+    <style type="text/tailwindcss">
+      * {
+        font-family: "Inter", sans-serif;
+        font-display: swap;
+        font-optical-sizing: auto;
+        font-style: normal;
+        @apply scroll-smooth text-gray-100 text-lg;
+      }
+
+      body {
+        @apply bg-zinc-900 p-4;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @apply font-bold;
+      }
+      h1 {
+        @apply text-4xl;
+      }
+      h2 {
+        @apply text-3xl;
+      }
+      h3 {
+        @apply text-2xl;
+      }
+      h4 {
+        @apply text-xl;
+      }
+      h5 {
+        @apply text-xl;
+      }
+
+      li {
+        @apply list-disc list-inside;
+      }
+
+      .container {
+        @apply flex flex-col items-center justify-center min-h-screen py-2 mx-auto;
+      }
+
+      .restaurants {
+        @apply grid grid-cols-1 md:grid-cols-2 gap-4 w-fit p-4;
+      }
+
+      .restaurant {
+        @apply bg-zinc-800 shadow-md rounded-lg p-4;
+      }
+      .divider {
+        @apply border-b border-gray-300 my-2 w-full;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
