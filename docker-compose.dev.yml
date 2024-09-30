@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: mealfetch
+    container_name: oymeals
     image: cosmtrek/air
     working_dir: /app
     environment:
@@ -8,4 +8,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./:/app
+      - ./views:/app/views
+      - ./handlers:/app/handlers
+      - ./static:/app/static
+      - ./main.go:/app/main.go
+      - ./go.mod:/app/go.mod
+      - ./go.sum:/app/go.sum

@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/template/html/v2"
 
-	"mealfetch/handlers"
+	"github.com/adventune/oymeals/handlers"
 )
 
 func main() {
@@ -59,9 +59,14 @@ func static() {
 	}
 	defer f.Close()
 
+	title := "OYMeals"
+	if os.Getenv("TITLE") != "" {
+		title = os.Getenv("TITLE")
+	}
+
 	// Render the template into the file
 	err = tmpl.Execute(f, handlers.RenderData{
-		Title:       "Ruokarokkaa",
+		Title:       title,
 		Restaurants: handlers.Data(),
 		Date:        time.Now().Format("02.01.2006"),
 	})

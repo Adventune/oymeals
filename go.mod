@@ -1,4 +1,4 @@
-module mealfetch
+module github.com/adventune/oymeals
 
 go 1.21.4
 

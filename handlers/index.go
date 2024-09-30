@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -34,9 +35,14 @@ var powerestaUrls = [][]string{
 }
 
 func Index(c *fiber.Ctx) error {
+	title := "OYMeals"
+	if os.Getenv("TITLE") != "" {
+		title = os.Getenv("TITLE")
+	}
+
 	// Render the page
 	return c.Render("index.tmpl", fiber.Map{
-		"Title":       "Ruokarokkaa",
+		"Title":       title,
 		"Restaurants": Data(),
 		"Date":        time.Now().Format("02.01.2006"),
 	})
