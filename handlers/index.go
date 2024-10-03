@@ -40,11 +40,16 @@ func Index(c *fiber.Ctx) error {
 		title = os.Getenv("TITLE")
 	}
 
+	date := time.Now()
+	if date.Hour() >= 17 {
+		date = date.Add(24 * time.Hour)
+	}
+
 	// Render the page
 	return c.Render("index.tmpl", fiber.Map{
 		"Title":       title,
 		"Restaurants": Data(),
-		"Date":        time.Now().Format("02.01.2006"),
+		"Date":        date.Format("02.01.2006"),
 	})
 }
 
