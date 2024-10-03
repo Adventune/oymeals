@@ -1,3 +1,4 @@
 compose.yml
 *.tar
 tmp
+build
