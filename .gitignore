@@ -2,3 +2,4 @@ compose.yml
 *.tar
 tmp
 build
+meals.html
