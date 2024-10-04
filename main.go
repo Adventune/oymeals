@@ -64,11 +64,16 @@ func static() {
 		title = os.Getenv("TITLE")
 	}
 
+	date := time.Now()
+	if date.Hour() >= 17 {
+		date = date.Add(24 * time.Hour)
+	}
+
 	// Render the template into the file
 	err = tmpl.Execute(f, handlers.RenderData{
 		Title:       title,
 		Restaurants: handlers.Data(),
-		Date:        time.Now().Format("02.01.2006"),
+		Date:        date.Format("02.01.2006"),
 	})
 	if err != nil {
 		panic(err)
