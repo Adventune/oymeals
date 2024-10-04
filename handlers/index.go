@@ -24,6 +24,10 @@ var juvenesUrls = [][]string{
 		"https://fi.jamix.cloud/apps/menuservice/rest/haku/menu/93077/49?lang=fi",
 		"Mara",
 	},
+	{
+		"https://fi.jamix.cloud/apps/menuservice/rest/haku/menu/93077/69?lang=fi",
+		"Foobar",
+	},
 }
 
 // Uniresta restaurants
@@ -31,6 +35,14 @@ var powerestaUrls = [][]string{
 	{
 		"https://api.fi.poweresta.com/publicmenu/dates/uniresta/lipasto/?menu=ravintolalipasto&dates=",
 		"Lipasto & Julinia",
+	},
+	{
+		"https://api.fi.poweresta.com/publicmenu/dates/uniresta/preludi/?menu=ravintolapreludi&dates=",
+		"Preludi",
+	},
+	{
+		"https://api.fi.poweresta.com/publicmenu/dates/uniresta/pekuri/?menu=ravintolapekuri&dates=",
+		"Pekuri",
 	},
 }
 
@@ -66,7 +78,26 @@ func Data() []Restaurant {
 		restaurants = append(restaurants, response...)
 	}
 
-	return restaurants
+	sortOrder := []string{
+		"Lipasto & Julinia",
+		"Mara",
+		"Kerttu",
+		"Voltti",
+		"Foobar",
+		"Pekuri",
+		"Preludi",
+	}
+	sortedRestaurants := make([]Restaurant, len(restaurants))
+	for _, restaurant := range restaurants {
+		for i, name := range sortOrder {
+			if restaurant.Name == name {
+				sortedRestaurants[i] = restaurant
+				break
+			}
+		}
+	}
+
+	return sortedRestaurants
 }
 
 // Fetch menus from Juvenes
