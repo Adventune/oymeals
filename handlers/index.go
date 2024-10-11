@@ -46,6 +46,16 @@ var powerestaUrls = [][]string{
 	},
 }
 
+var SORT_ORDER = []string{
+	"Lipasto & Julinia",
+	"Mara",
+	"Kerttu",
+	"Voltti",
+	"Foobar",
+	"Pekuri",
+	"Preludi",
+}
+
 func Index(c *fiber.Ctx) error {
 	title := "OYMeals"
 	if os.Getenv("TITLE") != "" {
@@ -78,18 +88,9 @@ func Data(date time.Time) []Restaurant {
 		restaurants = append(restaurants, response...)
 	}
 
-	sortOrder := []string{
-		"Lipasto & Julinia",
-		"Mara",
-		"Kerttu",
-		"Voltti",
-		"Foobar",
-		"Pekuri",
-		"Preludi",
-	}
 	sortedRestaurants := make([]Restaurant, len(restaurants))
 	for _, restaurant := range restaurants {
-		for i, name := range sortOrder {
+		for i, name := range SORT_ORDER {
 			if restaurant.Name == name {
 				sortedRestaurants[i] = restaurant
 				break
