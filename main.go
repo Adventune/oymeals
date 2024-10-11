@@ -72,7 +72,7 @@ func static() {
 	// Render the template into the file
 	err = tmpl.Execute(f, handlers.RenderData{
 		Title:       title,
-		Restaurants: handlers.Data(),
+		Restaurants: handlers.Data(date),
 		Date:        date.Format("02.01.2006"),
 	})
 	if err != nil {

@@ -60,21 +60,21 @@ func Index(c *fiber.Ctx) error {
 	// Render the page
 	return c.Render("index.tmpl", fiber.Map{
 		"Title":       title,
-		"Restaurants": Data(),
+		"Restaurants": Data(date),
 		"Date":        date.Format("02.01.2006"),
 	})
 }
 
-func Data() []Restaurant {
+func Data(date time.Time) []Restaurant {
 	var restaurants []Restaurant
 	// Fetch menus from Juvenes and Uniresta
 	for _, url := range juvenesUrls {
-		response := fetchJuvenes(url[0], url[1:]...)
+		response := fetchJuvenes(date, url[0], url[1:]...)
 		restaurants = append(restaurants, response...)
 	}
 
 	for _, url := range powerestaUrls {
-		response := fetchPoweresta(url[0], url[1])
+		response := fetchPoweresta(date, url[0], url[1])
 		restaurants = append(restaurants, response...)
 	}
 
@@ -101,7 +101,7 @@ func Data() []Restaurant {
 }
 
 // Fetch menus from Juvenes
-func fetchJuvenes(url string, names ...string) []Restaurant {
+func fetchJuvenes(date time.Time, url string, names ...string) []Restaurant {
 	var response JuvenesResponse
 	var restaurants []Restaurant
 
@@ -123,11 +123,7 @@ func fetchJuvenes(url string, names ...string) []Restaurant {
 		return restaurants
 	}
 
-	now := time.Now()
-	if now.Hour() >= 17 {
-		now = now.Add(24 * time.Hour)
-	}
-	currentDate := now.Format("20060102")
+	currentDate := date.Format("20060102")
 
 	// Parse the menu data
 	for i, restaurant := range response[0].MenuTypes {
@@ -172,15 +168,11 @@ func fetchJuvenes(url string, names ...string) []Restaurant {
 }
 
 // Fetch menus from Uniresta
-func fetchPoweresta(url, name string) []Restaurant {
+func fetchPoweresta(date time.Time, url, name string) []Restaurant {
 	var response PowerestaResponse
 	var restaurants []Restaurant
 
-	now := time.Now()
-	if now.Hour() >= 17 {
-		now = now.Add(24 * time.Hour)
-	}
-	currentDate := now.Format("2006-01-02")
+	currentDate := date.Format("2006-01-02")
 
 	// Get the menu data
 	res, err := http.Get(url + currentDate)
