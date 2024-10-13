@@ -5,10 +5,13 @@ campus of university of Oulu.
 
 ## Restaurants
 
+- Lipasto & Juliana (common menu)
 - Mara (Oulu university of applied sciences)
 - Kerttu
 - Voltti
-- Lipasto & Juliana (common menu)
+- Foobar
+- Pekuri
+- Preludi
 
 ## Installation
 
