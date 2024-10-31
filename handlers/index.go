@@ -98,7 +98,18 @@ func Data(date time.Time) []Restaurant {
 		}
 	}
 
-	return sortedRestaurants
+	// Filter out empty restaurants (there is an underlying bug in the data fetching)
+	// Too lazy to fix it properly
+
+	var filteredRestaurants []Restaurant
+	for _, restaurant := range sortedRestaurants {
+		// If name is empty, the restaurant is empty
+		if restaurant.Name != "" {
+			filteredRestaurants = append(filteredRestaurants, restaurant)
+		}
+	}
+
+	return filteredRestaurants
 }
 
 // Fetch menus from Juvenes
